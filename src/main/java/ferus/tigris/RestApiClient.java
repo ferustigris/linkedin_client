@@ -15,9 +15,9 @@ public class RestApiClient {
         this.restReader = restReader;
     }
 
-    public IResponse run(IQuery query) {
+    public Responsable run(IQuery query) {
         try {
-            JSONObject responseJSON = restReader.read(new URL(DATAUSA_API_DATA_URL + "?" + "drilldowns=Nation&measures=Population"));
+            JSONObject responseJSON = restReader.read(new URL(DATAUSA_API_DATA_URL + "?" + "drilldowns=Nation&measures=" + query.getQueryString()));
             return new TypicalResponse(responseJSON);
         } catch (MalformedURLException e) {
             e.printStackTrace();

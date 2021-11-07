@@ -14,7 +14,7 @@ public class ClientTests {
 
     @Test
     void runQuery() throws IOException, ParseException {
-        IQuery query = new ProfileQuery();
+        IQuery query = new ProfileQuery("Population");
         JSONObject obj = new JSONObject();
         obj.put("name","foo");
 
@@ -22,7 +22,7 @@ public class ClientTests {
         RestApiClient client = new RestApiClient(restReader);
 
         when(restReader.read(any())).thenReturn(obj);
-        IResponse response = client.run(query);
+        Responsable response = client.run(query);
         JSONObject json = response.getJSON();
         assertEquals(obj, json);
     }
