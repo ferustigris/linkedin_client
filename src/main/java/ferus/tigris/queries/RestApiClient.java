@@ -8,7 +8,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RestApiClient {
-    public static final String DATAUSA_API_DATA_URL = "https://datausa.io/api/data";
     private RestReader restReader;
 
     public RestApiClient() {

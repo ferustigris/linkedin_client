@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BaseQuery implements Queryable {
-    private final String baseUrl;
-    private final Map<String, String> params = new HashMap<>();
+    protected final String baseUrl;
+    protected final Map<String, String> params = new HashMap<>();
 
-    public BaseQuery() {
-        this.baseUrl = "https://datausa.io/api/data";
-        params.put("measures", "Population");
+    public BaseQuery(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 
     public BaseQuery(String baseUrl, String measures) {

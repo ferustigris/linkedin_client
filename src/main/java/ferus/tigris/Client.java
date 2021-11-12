@@ -4,7 +4,8 @@ import ferus.tigris.queries.*;
 import ferus.tigris.repos.ApisRepository;
 
 public class Client {
-    private static ApisRepository apisRepo = new ApisRepository();
+    private static final ApisRepository apisRepo = new ApisRepository();
+    private static final QueryFactory queryFactory = new QueryFactory();
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -16,10 +17,13 @@ public class Client {
             System.exit(1);
         }
 
-        String api = null;
+        Queryable query = null;
         if (args[0].startsWith("--api=")) {
             String apiName = args[0].substring(6);
-            api = apisRepo.getApiUrlByName(apiName);
+            query = queryFactory.createQuery(apiName);
+            if (query == null) {
+                System.exit(1);
+            }
         } else {
             System.out.println("API name not found.");
             System.exit(1);
@@ -27,12 +31,11 @@ public class Client {
 
         if (args.length == 1) {
             // list of queries available for the chosen API
-            System.out.println(api);
+            System.out.println(query.getAPIBaseUrl());
             System.exit(0);
         }
 
         RestApiClient client = new RestApiClient(new RestReader());
-        Queryable query = new BaseQuery();
         Responsable response = client.run(query);
 
         System.out.println(response.toString());
