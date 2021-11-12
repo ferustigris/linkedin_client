@@ -4,6 +4,7 @@ import ferus.tigris.queries.Queryable;
 import ferus.tigris.queries.Responsable;
 import ferus.tigris.queries.RestApiClient;
 import ferus.tigris.queries.RestReader;
+import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ public class ClientTests {
 
         Responsable response = client.run(query);
         when(restReader.read(any())).thenReturn(obj);
-        JSONObject json = response.getJSON();
+        JSONAware json = response.getJSON();
 
         assertEquals(obj, json);
     }

@@ -5,15 +5,27 @@ import java.util.Map;
 
 public class BaseQuery implements Queryable {
     protected final String baseUrl;
+    protected final String path;
     protected final Map<String, String> params = new HashMap<>();
 
     public BaseQuery(String baseUrl) {
-        this.baseUrl = baseUrl;
+        this(baseUrl, "", null);
     }
 
-    public BaseQuery(String baseUrl, String measures) {
+    public BaseQuery(String baseUrl, String path) {
+        this(baseUrl, path, null);
+    }
+
+    public BaseQuery(String baseUrl, String path, String... properties) {
         this.baseUrl = baseUrl;
-        params.put("measures", measures);
+        this.path = path;
+        // parse properties if any
+        if (properties != null) {
+            for (String nameValue : properties) {
+                String[] split = nameValue.trim().split("=");
+                params.put(split[0].trim(), split[1].trim());
+            }
+        }
     }
 
     @Override
@@ -23,7 +35,7 @@ public class BaseQuery implements Queryable {
 
     @Override
     public String getQueryString() {
-        return "";
+        return path;
     }
 
     @Override
@@ -42,9 +54,5 @@ public class BaseQuery implements Queryable {
     @Override
     public String getRequestUrl() {
         return getAPIBaseUrl() + getQueryString() + getQueryParams();
-    }
-
-    public void drillDown(String param) {
-        params.put("drilldowns", param);
     }
 }

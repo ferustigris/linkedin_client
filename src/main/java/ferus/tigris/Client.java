@@ -32,7 +32,6 @@ public class Client {
         if (args.length == 1) {
             // list of queries available for the chosen API
             System.out.println(query.getAPIBaseUrl());
-            System.exit(0);
         }
 
         RestApiClient client = new RestApiClient(new RestReader());

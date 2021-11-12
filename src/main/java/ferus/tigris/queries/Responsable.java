@@ -1,7 +1,7 @@
 package ferus.tigris.queries;
 
-import org.json.simple.JSONObject;
+import org.json.simple.JSONAware;
 
 public interface Responsable {
-    JSONObject getJSON();
+    JSONAware getJSON();
 }

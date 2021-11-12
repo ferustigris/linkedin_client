@@ -11,10 +11,10 @@ public interface Queryable {
     String getAPIBaseUrl();
 
     /**
-     * Path variables and/or query url-params.
+     * Query string that both with {{@link #getAPIBaseUrl()}}
+     * and {@link #getQueryParams()} allows to create a request to the API.
      *
-     * @return query string that both with {{@link #getAPIBaseUrl()}}
-     * allows to create a request to the API.
+     * @return Path variables.
      */
     String getQueryString();
 

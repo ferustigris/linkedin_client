@@ -12,8 +12,8 @@ public class QueryFactory {
         String apiUrl = apisRepo.getApiUrlByName(apiName);
 
         switch (apiName) {
-            case "github": return new GithubQuery(apiUrl);
-            case "datausa": return new DataUsaQuery(apiUrl);
+            case "github": return new GithubQuery();
+            case "datausa": return new DataUsaQuery();
             default:
                 System.out.println("API name is absent: " + apiName);
         }
