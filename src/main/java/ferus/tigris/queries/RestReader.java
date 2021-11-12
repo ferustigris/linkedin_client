@@ -1,4 +1,4 @@
-package ferus.tigris;
+package ferus.tigris.queries;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 public class RestReader {
 
-    protected JSONObject read(URL url) throws IOException, ParseException {
+    public JSONObject read(URL url) throws IOException, ParseException {
         try (InputStream is = url.openStream()) {
             JSONParser parser = new JSONParser();
             String data = new String(is.readAllBytes(), StandardCharsets.UTF_8);

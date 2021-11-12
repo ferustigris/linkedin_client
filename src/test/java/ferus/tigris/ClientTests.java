@@ -1,5 +1,9 @@
 package ferus.tigris;
 
+import ferus.tigris.queries.Queryable;
+import ferus.tigris.queries.Responsable;
+import ferus.tigris.queries.RestApiClient;
+import ferus.tigris.queries.RestReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
@@ -17,10 +21,9 @@ public class ClientTests {
     @Test
     void runQuery() throws IOException, ParseException {
         Queryable query = mock(Queryable.class);
-        when(query.getParams()).thenReturn(Map.of(
-                "drilldowns", "Nation",
-                "measures", "Population"
-        ));
+        when(query.getRequestUrl()).thenReturn(
+                "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
+        );
         JSONObject obj = new JSONObject();
         obj.put("name","foo");
 

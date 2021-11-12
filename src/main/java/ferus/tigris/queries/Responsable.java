@@ -1,4 +1,4 @@
-package ferus.tigris;
+package ferus.tigris.queries;
 
 import org.json.simple.JSONObject;
 

@@ -1,11 +1,11 @@
-package ferus.tigris;
+package ferus.tigris.queries;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 
 public class RestApiClient {
     public static final String DATAUSA_API_DATA_URL = "https://datausa.io/api/data";
@@ -35,7 +35,8 @@ public class RestApiClient {
     }
 
     private URL getUrl(Queryable query) throws MalformedURLException {
-        return new URL(DATAUSA_API_DATA_URL + "?" + query.getQueryString());
+        String requestUrl = query.getRequestUrl();
+        return new URL(requestUrl);
     }
 
 }

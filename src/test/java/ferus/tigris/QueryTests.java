@@ -1,11 +1,11 @@
 package ferus.tigris;
 
+import ferus.tigris.queries.BaseQuery;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 
 public class QueryTests {
 
@@ -14,7 +14,7 @@ public class QueryTests {
         final Map<String, String> defaultExpectedParams = Map.of(
                 "measures", "Population"
         );
-        ProfileQuery query = new ProfileQuery();
+        BaseQuery query = new BaseQuery();
         Map<String, String> params = query.getParams();
         assertEquals(defaultExpectedParams, params);
     }
@@ -25,7 +25,7 @@ public class QueryTests {
                 "drilldowns", "Nation",
                 "measures", "Population"
         );
-        ProfileQuery query = new ProfileQuery();
+        BaseQuery query = new BaseQuery();
         query.drillDown("Nation");
         Map<String, String> params = query.getParams();
         assertEquals(defaultExpectedParams, params);
