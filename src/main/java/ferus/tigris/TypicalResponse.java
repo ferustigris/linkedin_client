@@ -2,7 +2,7 @@ package ferus.tigris;
 
 import org.json.simple.JSONObject;
 
-class TypicalResponse implements IResponse {
+class TypicalResponse implements Responsable {
     private final JSONObject responseBody;
 
     public TypicalResponse(JSONObject responseBody) {

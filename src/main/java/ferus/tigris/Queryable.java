@@ -2,6 +2,7 @@ package ferus.tigris;
 
 import java.util.Map;
 
-public interface IQuery {
+public interface Queryable {
+    String getQueryString();
     Map<String, String> getParams();
 }

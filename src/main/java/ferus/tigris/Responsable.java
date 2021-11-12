@@ -2,6 +2,6 @@ package ferus.tigris;
 
 import org.json.simple.JSONObject;
 
-public interface IResponse {
+public interface Responsable {
     JSONObject getJSON();
 }

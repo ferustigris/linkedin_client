@@ -9,13 +9,14 @@ import java.net.URL;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 public class ClientTests {
 
     @Test
     void runQuery() throws IOException, ParseException {
-        IQuery query = mock(IQuery.class);
+        Queryable query = mock(Queryable.class);
         when(query.getParams()).thenReturn(Map.of(
                 "drilldowns", "Nation",
                 "measures", "Population"
@@ -28,7 +29,8 @@ public class ClientTests {
         when(restReader.read(new URL("https://datausa.io/api/data?drilldowns=Nation&measures=Population")))
                 .thenReturn(obj);
 
-        IResponse response = client.run(query);
+        Responsable response = client.run(query);
+        when(restReader.read(any())).thenReturn(obj);
         JSONObject json = response.getJSON();
 
         assertEquals(obj, json);

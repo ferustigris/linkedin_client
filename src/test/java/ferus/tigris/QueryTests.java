@@ -14,7 +14,7 @@ public class QueryTests {
         final Map<String, String> defaultExpectedParams = Map.of(
                 "measures", "Population"
         );
-        PopulationQuery query = new PopulationQuery();
+        ProfileQuery query = new ProfileQuery();
         Map<String, String> params = query.getParams();
         assertEquals(defaultExpectedParams, params);
     }
@@ -25,7 +25,7 @@ public class QueryTests {
                 "drilldowns", "Nation",
                 "measures", "Population"
         );
-        PopulationQuery query = new PopulationQuery();
+        ProfileQuery query = new ProfileQuery();
         query.drillDown("Nation");
         Map<String, String> params = query.getParams();
         assertEquals(defaultExpectedParams, params);

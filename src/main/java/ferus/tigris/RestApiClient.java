@@ -3,10 +3,6 @@ package ferus.tigris;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Optional;
-import java.util.stream.BaseStream;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -23,7 +19,7 @@ public class RestApiClient {
         this.restReader = restReader;
     }
 
-    public IResponse run(IQuery query) {
+    public Responsable run(Queryable query) {
         try {
             URL url = getUrl(query);
             JSONObject responseJSON = restReader.read(url);
@@ -38,10 +34,8 @@ public class RestApiClient {
         return new TypicalResponse(new JSONObject());
     }
 
-    private URL getUrl(IQuery query) throws MalformedURLException {
-        String params = query.getParams().entrySet().stream().map((entry) -> entry.getKey() + "=" + entry.getValue())
-                .reduce((k, v) -> k + "&" + v).get();
-        return new URL(DATAUSA_API_DATA_URL + "?" + params);
+    private URL getUrl(Queryable query) throws MalformedURLException {
+        return new URL(DATAUSA_API_DATA_URL + "?" + query.getQueryString());
     }
 
 }
