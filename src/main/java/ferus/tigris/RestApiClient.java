@@ -11,13 +11,18 @@ public class RestApiClient {
     public static final String DATAUSA_API_DATA_URL = "https://datausa.io/api/data";
     private RestReader restReader;
 
+    public RestApiClient() {
+        this.restReader = new RestReader();
+    }
+
     public RestApiClient(RestReader restReader) {
         this.restReader = restReader;
     }
 
-    public Responsable run(IQuery query) {
+    public Responsable run(Queryable query) {
         try {
-            JSONObject responseJSON = restReader.read(new URL(DATAUSA_API_DATA_URL + "?" + "drilldowns=Nation&measures=" + query.getQueryString()));
+            URL url = getUrl(query);
+            JSONObject responseJSON = restReader.read(url);
             return new TypicalResponse(responseJSON);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -27,6 +32,10 @@ public class RestApiClient {
             e.printStackTrace();
         }
         return new TypicalResponse(new JSONObject());
+    }
+
+    private URL getUrl(Queryable query) throws MalformedURLException {
+        return new URL(DATAUSA_API_DATA_URL + "?" + query.getQueryString());
     }
 
 }

@@ -8,8 +8,8 @@ public class Client {
         }
 
         RestApiClient client = new RestApiClient(new RestReader());
-        IQuery iQuery = new ProfileQuery(args[0]);
-        Responsable response = client.run(iQuery);
+        Queryable query = new ProfileQuery(args[0]);
+        Responsable response = client.run(query);
 
         System.out.println(response.toString());
     }
