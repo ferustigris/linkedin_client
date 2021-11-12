@@ -37,7 +37,6 @@ public class RestApiClient {
 
     private URL getUrl(Queryable query) throws MalformedURLException {
         String requestUrl = query.getRequestUrl();
-        System.out.println(requestUrl);
         return new URL(requestUrl);
     }
 

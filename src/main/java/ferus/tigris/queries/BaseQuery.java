@@ -28,23 +28,24 @@ public class BaseQuery implements Queryable {
         }
     }
 
-    @Override
-    public String getAPIBaseUrl() {
+    protected String getAPIBaseUrl() {
         return baseUrl;
     }
 
-    @Override
-    public String getQueryString() {
+    protected String getQueryString() {
         return path;
     }
 
-    @Override
+    /**
+     * Params that used in the query to create {@link #getQueryString()}.
+     *
+     * @return map of the params.
+     */
     public Map<String, String> getParams() {
         return params;
     }
 
-    @Override
-    public String getQueryParams() {
+    protected String getQueryParams() {
         String queryParams = params.entrySet().stream()
                 .map((entry) -> entry.getKey() + "=" + entry.getValue())
                 .reduce((k, v) -> k + "&" + v).orElse(null);
