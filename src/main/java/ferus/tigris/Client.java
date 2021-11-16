@@ -16,11 +16,12 @@ public class Client {
             System.out.println(apisRepo);
             System.exit(0);
         } else if ("--help".equals(args[0])) {
-            System.out.println("Usage: java rest_api_client [--api=api-name] [--query=query-params...]");
+            System.out.println("Usage: java ferus.tigris.Client [--api=api-name] [--query=query-params...]");
             System.exit(1);
         }
 
         BaseQuery query = null;
+        // find out which API to instantiate
         if (args[0].startsWith("--api=")) {
             String apiName = args[0].substring(6);
             query = (BaseQuery) queryFactory.createQuery(apiName);
@@ -28,6 +29,7 @@ public class Client {
                 System.out.println("Not defined API: " + apiName);
                 System.exit(1);
             }
+            System.out.println("API to query: " + query.getRequestUrl());
         } else {
             System.out.println("Set up API name in --api parameter.");
             System.exit(1);
@@ -35,12 +37,15 @@ public class Client {
 
         if (args.length == 1) {
             // list of queries available for the chosen API
-            System.out.println(String.join(", ", query.endpoints()));
+            System.out.println("Available endpoints:\n\t" +
+                    String.join(", \t", query.endpoints()));
+            System.exit(0);
         }
 
+        // instantiate the chosen query and execute it
         RestApiClient client = new RestApiClient(new RestReader());
         Responsable response = client.run(query);
-
+        // presenting the results
         System.out.println(response.toString());
     }
 }

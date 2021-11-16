@@ -29,6 +29,8 @@ public class BaseQuery implements Queryable, SchemaAware {
                 params.put(split[0].trim(), split[1].trim());
             }
             endpoints.put(this.path, params);
+        } else {
+            endpoints.put(this.path, null);
         }
     }
 

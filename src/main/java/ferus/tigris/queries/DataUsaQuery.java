@@ -4,11 +4,10 @@ package ferus.tigris.queries;
  * Queryies datausa.io public API.
  */
 public class DataUsaQuery extends BaseQuery {
-    public static final String API_DATA = "https://datausa.io/api/data";
+    public static final String API_DATA = "https://datausa.io";
 
     public DataUsaQuery() {
-        super(API_DATA);
-        params.put("measures", "Population");
+        super(API_DATA, "/api/data", "measures=Population");
     }
 
     public DataUsaQuery(String properties) {
