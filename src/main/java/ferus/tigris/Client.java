@@ -1,9 +1,10 @@
 package ferus.tigris;
 
+import ferus.tigris.client.Responsable;
+import ferus.tigris.client.RestApiClient;
+import ferus.tigris.client.RestReader;
 import ferus.tigris.queries.*;
 import ferus.tigris.repos.ApisRepository;
-
-import java.util.stream.Collectors;
 
 public class Client {
     private static final ApisRepository apisRepo = new ApisRepository();

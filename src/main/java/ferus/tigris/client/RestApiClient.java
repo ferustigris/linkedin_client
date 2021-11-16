@@ -1,6 +1,6 @@
-package ferus.tigris.queries;
+package ferus.tigris.client;
 
-import org.json.simple.JSONArray;
+import ferus.tigris.queries.Queryable;
 import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;

@@ -1,9 +1,9 @@
 package ferus.tigris;
 
 import ferus.tigris.queries.Queryable;
-import ferus.tigris.queries.Responsable;
-import ferus.tigris.queries.RestApiClient;
-import ferus.tigris.queries.RestReader;
+import ferus.tigris.client.Responsable;
+import ferus.tigris.client.RestApiClient;
+import ferus.tigris.client.RestReader;
 import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;

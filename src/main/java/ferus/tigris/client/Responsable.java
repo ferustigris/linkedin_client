@@ -1,4 +1,4 @@
-package ferus.tigris.queries;
+package ferus.tigris.client;
 
 import org.json.simple.JSONAware;
 
