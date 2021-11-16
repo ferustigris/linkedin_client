@@ -12,10 +12,6 @@ public class GithubQuery extends BaseQuery {
         this.endpoints.put("/search/code", parseParams("q=addClass+in:file+language:js+repo:jquery/jquery"));
     }
 
-    public GithubQuery(String path) {
-        super(API_DATA, path);
-    }
-
     public GithubQuery(String path, String... properties) {
         super(API_DATA, path, properties);
     }

@@ -48,6 +48,11 @@ public class Client {
             System.exit(0);
         }
 
+        if (args.length == 2) {
+            String endpoint = args[1].substring(ENDPOINT_ARG.length());
+            System.out.println("Params of " + endpoint +  ": " + query.parameters(endpoint));
+        }
+
         if (args[1].startsWith(ENDPOINT_ARG)) {
             String apiName = args[0].substring(API_ARG.length());
             String endpoint = args[1].substring(ENDPOINT_ARG.length());
