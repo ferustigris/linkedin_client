@@ -1,12 +1,15 @@
 package ferus.tigris.queries;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class BaseQuery implements Queryable {
+public class BaseQuery implements Queryable, SchemaAware {
     protected final String baseUrl;
     protected final String path;
     protected final Map<String, String> params = new HashMap<>();
+    protected final Map<String, Map<String, String>> endpoints = new HashMap<>();
 
     public BaseQuery(String baseUrl) {
         this(baseUrl, "", null);
@@ -25,6 +28,7 @@ public class BaseQuery implements Queryable {
                 String[] split = nameValue.trim().split("=");
                 params.put(split[0].trim(), split[1].trim());
             }
+            endpoints.put(this.path, params);
         }
     }
 
@@ -37,7 +41,7 @@ public class BaseQuery implements Queryable {
     }
 
     /**
-     * Params that used in the query to create {@link #getQueryString()}.
+     * Params that used in the query to create {@link #getQueryParams()}.
      *
      * @return map of the params.
      */
@@ -55,5 +59,15 @@ public class BaseQuery implements Queryable {
     @Override
     public String getRequestUrl() {
         return getAPIBaseUrl() + getQueryString() + getQueryParams();
+    }
+
+    @Override
+    public List<String> endpoints() {
+        return new ArrayList<>(endpoints.keySet());
+    }
+
+    @Override
+    public Map<String, String> parameters(String endpoint) {
+        return endpoints.getOrDefault(endpoint, null);
     }
 }

@@ -1,7 +1,6 @@
 package ferus.tigris.queries;
 
 import org.json.simple.JSONAware;
-import org.json.simple.JSONObject;
 
 class TypicalResponse implements Responsable {
     private final JSONAware responseBody;

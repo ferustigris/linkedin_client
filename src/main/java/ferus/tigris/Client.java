@@ -3,6 +3,8 @@ package ferus.tigris;
 import ferus.tigris.queries.*;
 import ferus.tigris.repos.ApisRepository;
 
+import java.util.stream.Collectors;
+
 public class Client {
     private static final ApisRepository apisRepo = new ApisRepository();
     private static final QueryFactory queryFactory = new QueryFactory();
@@ -17,21 +19,22 @@ public class Client {
             System.exit(1);
         }
 
-        Queryable query = null;
+        BaseQuery query = null;
         if (args[0].startsWith("--api=")) {
             String apiName = args[0].substring(6);
-            query = queryFactory.createQuery(apiName);
+            query = (BaseQuery) queryFactory.createQuery(apiName);
             if (query == null) {
+                System.out.println("Not defined API: " + apiName);
                 System.exit(1);
             }
         } else {
-            System.out.println("API name not found.");
+            System.out.println("Set up API name in --api parameter.");
             System.exit(1);
         }
 
         if (args.length == 1) {
             // list of queries available for the chosen API
-            System.out.println(query.getRequestUrl());
+            System.out.println(String.join(", ", query.endpoints()));
         }
 
         RestApiClient client = new RestApiClient(new RestReader());
