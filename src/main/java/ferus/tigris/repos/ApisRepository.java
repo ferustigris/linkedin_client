@@ -1,8 +1,5 @@
 package ferus.tigris.repos;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 /**
  * Contains all available APIs that might be queried.
  */

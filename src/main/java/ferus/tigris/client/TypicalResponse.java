@@ -1,16 +1,16 @@
-package ferus.tigris.queries;
+package ferus.tigris.client;
 
-import org.json.simple.JSONObject;
+import org.json.simple.JSONAware;
 
 class TypicalResponse implements Responsable {
-    private final JSONObject responseBody;
+    private final JSONAware responseBody;
 
-    public TypicalResponse(JSONObject responseBody) {
+    public TypicalResponse(JSONAware responseBody) {
         this.responseBody = responseBody;
     }
 
     @Override
-    public JSONObject getJSON() {
+    public JSONAware getJSON() {
         return responseBody;
     }
 

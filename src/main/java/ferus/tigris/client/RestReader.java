@@ -1,5 +1,6 @@
-package ferus.tigris.queries;
+package ferus.tigris.client;
 
+import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -11,12 +12,12 @@ import java.nio.charset.StandardCharsets;
 
 public class RestReader {
 
-    public JSONObject read(URL url) throws IOException, ParseException {
+    public JSONAware read(URL url) throws IOException, ParseException {
         try (InputStream is = url.openStream()) {
             JSONParser parser = new JSONParser();
             String data = new String(is.readAllBytes(), StandardCharsets.UTF_8);
             System.out.println(data);
-            return (JSONObject)parser.parse(data);
+            return (JSONAware) parser.parse(data);
         }
     }
 }
