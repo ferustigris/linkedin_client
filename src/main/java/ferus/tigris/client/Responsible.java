@@ -2,6 +2,6 @@ package ferus.tigris.client;
 
 import org.json.simple.JSONAware;
 
-public interface Responsable {
+public interface Responsible {
     JSONAware getJSON();
 }

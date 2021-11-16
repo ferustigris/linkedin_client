@@ -1,12 +1,11 @@
 package ferus.tigris;
 
-import ferus.tigris.client.Responsable;
+import ferus.tigris.client.Responsible;
 import ferus.tigris.client.RestApiClient;
 import ferus.tigris.client.RestReader;
 import ferus.tigris.queries.*;
 import ferus.tigris.repos.ApisRepository;
 
-import javax.sound.midi.Soundbank;
 import java.util.Arrays;
 
 public class Client {
@@ -59,7 +58,7 @@ public class Client {
 
         // instantiate the chosen query and execute it
         RestApiClient client = new RestApiClient(new RestReader());
-        Responsable response = client.run(query);
+        Responsible response = client.run(query);
         // presenting the results
         System.out.println("Response:\n" + response.toString());
     }

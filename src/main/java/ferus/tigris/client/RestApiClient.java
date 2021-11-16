@@ -20,7 +20,7 @@ public class RestApiClient {
         this.restReader = restReader;
     }
 
-    public Responsable run(Queryable query) {
+    public Responsible run(Queryable query) {
         try {
             URL url = getUrl(query);
             JSONAware responseJSON = restReader.read(url);
