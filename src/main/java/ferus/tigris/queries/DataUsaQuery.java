@@ -10,15 +10,11 @@ public class DataUsaQuery extends BaseQuery {
         super(API_DATA, "/api/data", "measures=Population");
     }
 
-    public DataUsaQuery(String properties) {
-        super(API_DATA, properties);
-    }
-
     public DataUsaQuery(String path, String... properties) {
         super(API_DATA, path, properties);
     }
 
     public void drillDown(String param) {
-        params.put("drilldowns", param);
+        getParams().put("drilldowns", param);
     }
 }

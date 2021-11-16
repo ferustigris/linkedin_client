@@ -16,6 +16,6 @@ class TypicalResponse implements Responsable {
 
     @Override
     public String toString() {
-        return super.toString() + responseBody.toJSONString();
+        return responseBody.toJSONString();
     }
 }
