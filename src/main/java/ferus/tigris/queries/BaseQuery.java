@@ -2,12 +2,12 @@ package ferus.tigris.queries;
 
 import java.util.*;
 
-public class BaseQuery implements Queryable, SchemaAware {
+public abstract class BaseQuery implements Queryable, SchemaAware {
     protected final String baseUrl;
     protected final String path;
     protected final Map<String, Map<String, String>> endpoints = new HashMap<>();
 
-    public BaseQuery(String baseUrl) {
+    private BaseQuery(String baseUrl) {
         this(baseUrl, "", null);
     }
 

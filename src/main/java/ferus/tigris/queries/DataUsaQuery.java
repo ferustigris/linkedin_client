@@ -1,7 +1,7 @@
 package ferus.tigris.queries;
 
 /**
- * Queryies datausa.io public API.
+ * Queries datausa.io public API.
  */
 public class DataUsaQuery extends BaseQuery {
     public static final String API_DATA = "https://datausa.io";
