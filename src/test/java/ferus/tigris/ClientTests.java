@@ -1,7 +1,7 @@
 package ferus.tigris;
 
 import ferus.tigris.queries.Queryable;
-import ferus.tigris.client.Responsable;
+import ferus.tigris.client.Responsible;
 import ferus.tigris.client.RestApiClient;
 import ferus.tigris.client.RestReader;
 import org.json.simple.JSONAware;
@@ -33,7 +33,7 @@ public class ClientTests {
         RestApiClient client = new RestApiClient(restReader);
         when(restReader.read(new URL(DATA_USA_DEFAULT))).thenReturn(obj);
 
-        Responsable response = client.run(query);
+        Responsible response = client.run(query);
         when(restReader.read(any())).thenReturn(obj);
         JSONAware json = response.getJSON();
 

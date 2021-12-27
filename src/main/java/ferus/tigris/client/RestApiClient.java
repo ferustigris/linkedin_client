@@ -20,17 +20,15 @@ public class RestApiClient {
         this.restReader = restReader;
     }
 
-    public Responsable run(Queryable query) {
+    public Responsible run(Queryable query) {
         try {
             URL url = getUrl(query);
             JSONAware responseJSON = restReader.read(url);
             return new TypicalResponse(responseJSON);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return new TypicalResponse(new JSONObject());
     }

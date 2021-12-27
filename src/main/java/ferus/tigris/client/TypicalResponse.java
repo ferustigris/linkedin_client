@@ -2,7 +2,7 @@ package ferus.tigris.client;
 
 import org.json.simple.JSONAware;
 
-class TypicalResponse implements Responsable {
+class TypicalResponse implements Responsible {
     private final JSONAware responseBody;
 
     public TypicalResponse(JSONAware responseBody) {
@@ -16,6 +16,6 @@ class TypicalResponse implements Responsable {
 
     @Override
     public String toString() {
-        return super.toString() + responseBody.toJSONString();
+        return responseBody.toJSONString();
     }
 }

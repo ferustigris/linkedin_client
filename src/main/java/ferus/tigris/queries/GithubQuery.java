@@ -8,10 +8,9 @@ public class GithubQuery extends BaseQuery {
 
     public GithubQuery() {
         super(API_DATA, "/organizations");
-    }
-
-    public GithubQuery(String path) {
-        super(API_DATA, path);
+        // init meta-info about other endpoints
+        this.endpoints.put("/search/code", parseParams("q=addClass+in:file+language:js+repo:jquery/jquery"));
+        this.endpoints.put("/gists", parseParams("q=page=10&per_page=1"));
     }
 
     public GithubQuery(String path, String... properties) {

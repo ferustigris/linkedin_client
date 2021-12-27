@@ -1,17 +1,13 @@
 package ferus.tigris.queries;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class BaseQuery implements Queryable, SchemaAware {
+public abstract class BaseQuery implements Queryable, SchemaAware {
     protected final String baseUrl;
     protected final String path;
-    protected final Map<String, String> params = new HashMap<>();
     protected final Map<String, Map<String, String>> endpoints = new HashMap<>();
 
-    public BaseQuery(String baseUrl) {
+    private BaseQuery(String baseUrl) {
         this(baseUrl, "", null);
     }
 
@@ -22,19 +18,30 @@ public class BaseQuery implements Queryable, SchemaAware {
     public BaseQuery(String baseUrl, String path, String... properties) {
         this.baseUrl = baseUrl;
         this.path = path;
-        // parse properties if any
-        if (properties != null) {
-            for (String nameValue : properties) {
-                String[] split = nameValue.trim().split("=");
-                params.put(split[0].trim(), split[1].trim());
-            }
-            endpoints.put(this.path, params);
-        } else {
-            endpoints.put(this.path, null);
-        }
+        Map<String, String> params = parseParams(properties);
+        endpoints.put(this.path, params);
     }
 
-    protected String getAPIBaseUrl() {
+    /**
+     * Parse properties if any.
+     *
+     * @param properties to parse
+     * @return map of name-value pairs or null.
+     */
+    protected Map<String, String> parseParams(String... properties) {
+        if (properties != null) {
+            Map<String, String> temp = new HashMap<>();
+            for (String nameValue : properties) {
+                String[] split = nameValue.trim().split("=");
+                temp.put(split[0].trim(), split[1].trim());
+            }
+            return temp;
+        }
+        return null;
+    }
+
+    @Override
+    public String getBaseUrl() {
         return baseUrl;
     }
 
@@ -48,11 +55,13 @@ public class BaseQuery implements Queryable, SchemaAware {
      * @return map of the params.
      */
     public Map<String, String> getParams() {
-        return params;
+        Map<String, String> empty = Collections.emptyMap();
+        Map<String, String> params = endpoints.getOrDefault(path, empty);
+        return params != null ? params : empty;
     }
 
     protected String getQueryParams() {
-        String queryParams = params.entrySet().stream()
+        String queryParams = getParams().entrySet().stream()
                 .map((entry) -> entry.getKey() + "=" + entry.getValue())
                 .reduce((k, v) -> k + "&" + v).orElse(null);
         return queryParams != null ? "?" + queryParams : "";
@@ -60,7 +69,7 @@ public class BaseQuery implements Queryable, SchemaAware {
 
     @Override
     public String getRequestUrl() {
-        return getAPIBaseUrl() + getQueryString() + getQueryParams();
+        return getBaseUrl() + getQueryString() + getQueryParams();
     }
 
     @Override

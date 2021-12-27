@@ -16,7 +16,6 @@ public class RestReader {
         try (InputStream is = url.openStream()) {
             JSONParser parser = new JSONParser();
             String data = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-            System.out.println(data);
             return (JSONAware) parser.parse(data);
         }
     }
