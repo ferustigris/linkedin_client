@@ -2,7 +2,6 @@ package ferus.tigris.client;
 
 import ferus.tigris.queries.Queryable;
 import org.json.simple.JSONAware;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -20,19 +19,10 @@ public class RestApiClient {
         this.restReader = restReader;
     }
 
-    public Responsable run(Queryable query) {
-        try {
-            URL url = getUrl(query);
-            JSONAware responseJSON = restReader.read(url);
-            return new TypicalResponse(responseJSON);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return new TypicalResponse(new JSONObject());
+    public Responsable run(Queryable query) throws IOException, ParseException {
+        URL url = getUrl(query);
+        JSONAware responseJSON = restReader.read(url);
+        return new TypicalResponse(responseJSON);
     }
 
     private URL getUrl(Queryable query) throws MalformedURLException {
