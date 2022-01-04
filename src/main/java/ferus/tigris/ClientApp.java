@@ -6,7 +6,7 @@ import ferus.tigris.queries.BaseQuery;
 public class ClientApp {
 
     public static void main(String[] args) {
-        Client client = Client.getInstance();
+        Client client = new Client();
         if (args.length == 0) {
             // list of available APIs
             System.out.println(client.getReposList());

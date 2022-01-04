@@ -9,17 +9,12 @@ import ferus.tigris.repos.ApisRepository;
 public class Client {
     private final ApisRepository apisRepo = new ApisRepository();
     private final QueryFactory queryFactory = new QueryFactory();
-    private static final Client client = new Client();
 
     public String getReposList() {
         return apisRepo.toString();
     }
 
-    private Client() {}
-
-    public static Client getInstance() {
-        return client;
-    }
+    public Client() {}
 
     public BaseQuery getQuery(String apiName) {
         return (BaseQuery) queryFactory.createQuery(apiName);
